@@ -1,0 +1,1 @@
+Very simple project built in <1h for demonstration purposes (Meteor training / sessions).

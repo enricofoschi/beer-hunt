@@ -1,0 +1,54 @@
+<template name="beersList">
+    <div class="section" id="index-banner">
+        <div class="container">
+            <h1 class="header center orange-text">Choose Your Beer</h1>
+
+            <div class="row center">
+                <h5 class="header col s12 light">(that's really all we care about, right?)</h5>
+                <h5>{{#if availableVotes}}
+                    Available votes: {{availableVotes}}
+                {{else}}
+                    You already used all your votes
+                {{/if}}
+                </h5>
+                <small>(yes, I am aware that there are ways to cheat - fairly easily, after all this page has been developed in Meteor in &lt;45mins on a train ride to Berlin - but please play fair ;))</small>
+            </div>
+
+            {{#if beers}}
+                <h4>Top Choices</h4>
+
+                <ul>
+                    {{#each beers}}
+                        <li>
+                            {{#if beerImage _id}}
+                                <img src="{{beerImage _id}}" width="120" class="v-middle">
+                            {{/if}}
+                            <span class="bigger"><a href="{{url}}" target="_blank">{{name}}</a>
+                                ({{vote}})
+
+                                {{#if availableVotes}}
+                                    <a class="vote success" data-vote="up">
+                                        <i class="v-middle material-icons">thumb_up</i>
+                                    </a>
+                                {{/if}}
+                            </span>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+
+            {{#if votes}}
+                <h4>Your Votes</h4>
+                <ul>
+                    {{#each votes}}
+                        <li>{{beerName}} (<a class="unvote danger">cancel</a>)</li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+
+            {{#if availableVotes}}
+                {{> addBeer }}
+            {{/if}}
+        </div>
+    </div>
+</template>
